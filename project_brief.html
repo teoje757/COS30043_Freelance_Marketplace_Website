@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Brief Form</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Fonts - Sedan -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Sedan:ital@0;1&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navigation bar -->
+  <div id="navbarContainer"></div>
+
+  <br><br><br><br><br><br>
+
+  <!-- Project Brief Form -->
+  <div class="max-w-xl mx-auto bg-white p-6 rounded-lg shadow-lg">
+    <h2 class="text-2xl mb-6">Project Brief Form</h2>
+    <form id="projectBriefForm" action="project_brief_success.html" method="POST" novalidate>
+
+      <!-- Name Field -->
+      <div class="mb-5">
+        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" aria-label="Your Name">Name</label>
+        <input type="text" id="name" name="name" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Enter your full name" aria-required="true" aria-describedby="nameDescription nameError" required>
+        <span id="nameError" class="error-message" role="alert" aria-live="assertive"></span>
+      </div>
+
+      <!-- Email Field -->
+      <div class="mb-5">
+        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" aria-label="Your Email">Email</label>
+        <input type="email" id="email" name="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="name@gmail.com" aria-required="true" aria-describedby="emailDescription emailError" required>
+        <span id="emailError" class="error-message" role="alert" aria-live="assertive"></span>
+      </div>
+
+      <!-- Role Field -->
+      <div class="mb-5">
+        <label for="role" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" aria-label="Role">Role</label>
+        <input type="text" id="role" aria-label="role" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" value="Client" disabled readonly>
+      </div>
+
+      <!-- Service Chosen Field -->
+      <div class="mb-5">
+        <label for="serviceChosen" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" aria-label="Service Chosen">Service Chosen</label>
+        <select id="serviceChosen" name="serviceChosen" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" aria-required="true" aria-describedby="serviceDescription serviceError" required>
+          <option value="" disabled selected>Select a service</option>
+          <optgroup label="Graphic Design">
+            <option value="Logo and Brand Design">Logo and Brand Design</option>
+            <option value="Website Design">Website Design</option>
+            <option value="Business Card and Flyer">Business Card and Flyer</option>
+          </optgroup>
+          <optgroup label="Writing">
+            <option value="Blog Post">Blog Post</option>
+            <option value="Social Media Content">Social Media Content</option>
+            <option value="Email Newsletter">Email Newsletter</option>
+          </optgroup>
+          <optgroup label="Photography and Videography">
+            <option value="Portrait Photography">Portrait Photography</option>
+            <option value="Landscape Photography">Landscape Photography</option>
+            <option value="Promotional Videography">Promotional Videography</option>
+            <option value="Event Videography">Event Videography</option>
+          </optgroup>
+        </select>
+        <span id="serviceError" class="error-message" role="alert" aria-live="assertive"></span>
+      </div>
+
+      <!-- Project Name Field -->
+      <div class="mb-5">
+        <label for="projectName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" aria-label="Project Name">Project Name</label>
+        <input type="text" id="projectName" name="projectName" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Project name" aria-required="true" aria-describedby="projectNameDescription projectNameError" required>
+        <span id="projectNameError" class="error-message" role="alert" aria-live="assertive"></span>
+      </div>
+
+      <!-- Project Description Field -->
+      <div class="mb-5">
+        <label for="projectDescription" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" aria-label="Project Description">Project Description</label>
+        <textarea id="projectDescription" name="projectDescription" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" rows="7" placeholder="Describe your project" aria-describedby="projectDescriptionHelp projectDescriptionError" required></textarea>
+        <span id="projectDescriptionError" class="error-message" role="alert" aria-live="assertive"></span>
+      </div>
+
+      <!-- Budget Field -->
+      <div class="mb-5">
+        <label for="budget" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" aria-label="Budget">Budget</label>
+        <input type="text" id="budget" name="budget" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Your budget" aria-describedby="budgetHelp budgetError">
+        <span id="budgetError" class="error-message" role="alert" aria-live="assertive"></span>
+      </div>
+
+      <!-- Deadline Field -->
+      <div class="mb-5">
+        <label for="deadline" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" aria-label="Deadline">Deadline</label>
+        <input type="date" id="deadline" name="deadline" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" aria-describedby="deadlineHelp deadlineError" required>
+        <span id="deadlineError" class="error-message" role="alert" aria-live="assertive"></span>
+      </div>
+
+      <!-- Terms and Conditions -->
+      <div class="terms-and-conditions mb-4">
+        <h3 class="text-xs font-medium text-gray-900">Terms and Conditions</h3>
+        <ul class="list-disc pl-5 text-xs text-gray-600 mt-2" aria-describedby="termsAndConditions">
+          <li>The client agrees to provide all necessary materials, information, and approvals in a timely manner to facilitate the project’s completion.</li>
+          <li>Both parties agree to maintain the confidentiality of any proprietary or sensitive information disclosed during the project.</li>
+          <li>All work produced will be owned by the client, with the client granted a non-exclusive license to use the deliverables.</li>
+          <li>Revisions will be accommodated within the scope of the project. Significant changes may incur additional costs and affect the timeline.</li>
+          <li>Either party may terminate the project within 30 days' notice. Payments for completed work are non-refundable.</li>
+          <li>This agreement represents the entire agreement between the parties. Any amendments must be in writing and signed by both parties.</li>
+        </ul>
+      </div>
+
+      <!-- Agreement Checkbox -->
+      <div class="flex items-center mb-4">
+        <input id="checkbox-1" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 mr-2" aria-required="true">
+        <label for="checkbox-1" class="text-sm font-medium text-gray-900 dark:text-gray-300"> I agree to the <a href="#" class="text-blue-600 hover:underline dark:text-blue-500">terms and conditions</a>.</label>
+        <span id="termsError" class="error-message" role="alert" aria-live="assertive"></span>
+      </div>
+
+      <!-- Submit Button -->
+      <div>
+        <button type="submit" class="btn btn-outline-primary8" aria-label="Submit form">Submit</button>
+      </div>
+    </form>
+  </div>
+
+  <br><br>
+
+  <!-- Footer -->
+  <div id="footerContainer"></div>
+
+  <!-- jQuery and Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+  <script src="js/project_brief.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/footer.js"></script>
+</body>
+</html>

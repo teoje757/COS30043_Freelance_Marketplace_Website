@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up or Login</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Fonts - Sedan -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sedan:ital@0;1&display=swap" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- Vuetify CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+  <link href="https://cdn.materialdesignicons.com/5.3.45/css/materialdesignicons.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navigation bar -->
+  <div id="navbarContainer"></div>
+
+  <br><br><br>
+
+  <div class="container">
+    <div class="row justify-content-center mt-5">
+      <div class="col-3">
+        <div class="d-flex justify-content-center">
+          <!-- Buttons for switching between sign-up and login -->
+          <button id="showSignup" class="btn btn-outline-primary6 mr-3" aria-label="Show sign-up form">Sign Up</button>
+          <button id="showLogin" class="btn btn-outline-primary6" aria-label="Show login form">Login</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sign-up Form -->
+  <div id="signupForm" aria-labelledby="signupFormLabel" style="display: none;">
+    <div id="app">
+      <v-app>
+        <v-main>
+          <v-container>
+            <v-card class="elevation-12 mt-5">
+              <v-card-title class="text-center">
+                <!-- Sign-up Form Label -->
+                <h1 id="signupFormLabel" class="form-title display-1">Sign Up</h1>
+              </v-card-title>
+              <!-- Sign-up Form Content -->
+              <v-form ref="myForm" v-model="valid" @submit.prevent="handleSubmit">
+                <!-- First Name -->
+                <v-row justify="center">
+                  <v-col cols="12" sm="8" md="6">
+                    <v-text-field
+                      id="firstname"
+                      v-model="firstname"
+                      :rules="nameRules"
+                      label="First Name"
+                      placeholder="Enter your first name"
+                      outlined
+                      required
+                      aria-required="true"
+                      aria-describedby="firstnameError"
+                    ></v-text-field>
+                    <span id="firstnameError" role="alert" aria-live="assertive" style="color: red;"></span>
+                  </v-col>
+                </v-row>
+                <!-- Last Name -->
+                <v-row justify="center">
+                  <v-col cols="12" sm="8" md="6">
+                    <v-text-field
+                      id="lastname"
+                      v-model="lastname"
+                      :rules="nameRules"
+                      label="Last Name"
+                      placeholder="Enter your last name"
+                      outlined
+                      required
+                      aria-required="true"
+                      aria-describedby="lastnameError"
+                    ></v-text-field>
+                    <span id="lastnameError" role="alert" aria-live="assertive" style="color: red;"></span>
+                  </v-col>
+                </v-row>
+                <!-- Username -->
+                <v-row justify="center">
+                  <v-col cols="12" sm="8" md="6">
+                    <v-text-field
+                      id="username"
+                      v-model="username"
+                      :rules="userRules"
+                      label="Username"
+                      placeholder="Enter your username"
+                      outlined
+                      required
+                      aria-required="true"
+                      aria-describedby="usernameError"
+                    ></v-text-field>
+                    <span id="usernameError" role="alert" aria-live="assertive" style="color: red;"></span>
+                  </v-col>
+                </v-row>
+                <!-- Email -->
+                <v-row justify="center">
+                  <v-col cols="12" sm="8" md="6">
+                    <v-text-field
+                      id="email"
+                      v-model="email"
+                      :rules="emailRules"
+                      label="Email"
+                      placeholder="Enter your email"
+                      outlined
+                      required
+                      aria-required="true"
+                      aria-describedby="emailError"
+                    ></v-text-field>
+                    <span id="emailError" role="alert" aria-live="assertive" style="color: red;"></span>
+                  </v-col>
+                </v-row>
+                <!-- Password -->
+                <v-row justify="center">
+                  <v-col cols="12" sm="8" md="6">
+                    <v-text-field
+                      id="password"
+                      v-model="password"
+                      :rules="passwordRules"
+                      label="Password"
+                      type="password"
+                      placeholder="Enter your password"
+                      outlined
+                      required
+                      aria-required="true"
+                      aria-describedby="passwordError"
+                    ></v-text-field>
+                    <span id="passwordError" role="alert" aria-live="assertive" style="color: red;"></span>
+                  </v-col>
+                </v-row>
+                <!-- Mobile Number -->
+                <v-row justify="center">
+                  <v-col cols="12" sm="8" md="6">
+                    <v-text-field
+                      id="mobile_number"
+                      v-model="mobile_number"
+                      :rules="mobileRules"
+                      label="Mobile Number"
+                      placeholder="Enter your mobile number"
+                      outlined
+                      required
+                      aria-required="true"
+                      aria-describedby="mobileNumberError"
+                    ></v-text-field>
+                    <span id="mobileNumberError" role="alert" aria-live="assertive" style="color: red;"></span>
+                  </v-col>
+                </v-row>
+                <!-- User Type -->
+                <v-row justify="center">
+                  <v-col cols="12" sm="8" md="6">
+                    <v-select
+                      id="userType"
+                      v-model="userType"
+                      :rules="userTypeRules"
+                      :items="userTypes"
+                      label="User Type"
+                      placeholder="Choose your user type"
+                      outlined
+                      required
+                      aria-required="true"
+                      aria-describedby="userTypeError"
+                    ></v-select>
+                    <span id="userTypeError" role="alert" aria-live="assertive" style="color: red;"></span>
+                  </v-col>
+                </v-row>
+                <!-- Additional Fields for Freelancers -->
+                <div v-if="userType === 'Freelancer'">
+                  <!-- Main Skill -->
+                  <v-row justify="center">
+                    <v-col cols="12" sm="8" md="6">
+                      <v-select
+                        id="mainSkill"
+                        v-model="mainSkill"
+                        :rules="mainSkillRules"
+                        :items="mainSkillsList"
+                        label="Main Skill"
+                        placeholder="Choose your main skill"
+                        outlined
+                        required
+                        aria-required="true"
+                        aria-describedby="mainSkillError"
+                        @change="handleMainSkillChange"
+                      ></v-select>
+                      <span id="mainSkillError" role="alert" aria-live="assertive" style="color: red;"></span>
+                    </v-col>
+                  </v-row>
+                  <!-- Sub Skills -->
+                  <v-row v-if="showSubSkills" justify="center">
+                    <v-col cols="12" sm="8" md="6">
+                      <v-select
+                        id="subSkills"
+                        v-model="subSkills"
+                        :rules="subSkillRules"
+                        :items="subSkillsList[mainSkill]"
+                        label="Sub Skills"
+                        placeholder="Choose your sub skills"
+                        multiple
+                        outlined
+                        required
+                        aria-required="true"
+                        aria-describedby="subSkillsError"
+                      ></v-select>
+                      <span id="subSkillsError" role="alert" aria-live="assertive" style="color: red;"></span>
+                    </v-col>
+                  </v-row>
+                  <!-- Pricing Rates -->
+                  <v-row justify="center">
+                    <v-col cols="12" sm="8" md="6">
+                      <v-text-field
+                        id="rates"
+                        v-model="rates"
+                        :rules="rateRules"
+                        label="Pricing Rates (per hour)"
+                        placeholder="Enter your pricing rates"
+                        outlined
+                        required
+                        aria-required="true"
+                        aria-describedby="ratesError"
+                      ></v-text-field>
+                      <span id="ratesError" role="alert" aria-live="assertive" style="color: red;"></span>
+                    </v-col>
+                  </v-row>
+                  <!-- Portfolio Samples -->
+                  <v-row justify="center">
+                    <v-col cols="12" sm="8" md="6">
+                      <v-file-input
+                        id="portfolio"
+                        v-model="selectedFiles"
+                        label="Portfolio Samples"
+                        multiple
+                        @change="handleFileUpload"
+                        placeholder="Upload your files"
+                        required
+                        aria-required="true"
+                        aria-describedby="portfolioError"
+                      >
+                        <template v-slot:prepend-inner>
+                          <v-row v-if="selectedFiles.length > 0">
+                            <v-col v-for="(file, index) in selectedFiles" :key="index" cols="12">
+                              <v-chip class="ma-2">
+                                {{ file.name }}
+                                <v-btn @click="removeFile(index)" icon small color="error">
+                                  <v-icon>mdi-close</v-icon>
+                                </v-btn>
+                              </v-chip>
+                            </v-col>
+                          </v-row>
+                        </template>
+                      </v-file-input>
+                      <span id="portfolioError" role="alert" aria-live="assertive" style="color: red;"></span>
+                      <v-btn color="blue" class="text-white" @click="$refs.fileInput.click()">Upload more</v-btn>
+                      <input type="file" style="display: none" ref="fileInput" multiple @change="handleFileUpload">
+                    </v-col>
+                  </v-row>
+                </div>
+                <!-- Additional Fields for Clients -->
+                <div v-if="userType === 'Client'">
+                  <!-- Company Name -->
+                  <v-row justify="center">
+                    <v-col cols="12" sm="8" md="6">
+                      <v-text-field
+                        id="company"
+                        v-model="company"
+                        :rules="companyRules"
+                        label="Company Name (if applicable)"
+                        placeholder="Enter your company name"
+                        outlined
+                      ></v-text-field>
+                    </v-col>
+                  </v-row>
+                  <!-- Interests -->
+                  <v-row justify="center">
+                    <v-col cols="12" sm="8" md="6">
+                      <v-select
+                        id="interests"
+                        v-model="interests"
+                        :items="interestsList"
+                        label="What are you interested in?"
+                        multiple
+                        placeholder="Choose your interests"
+                        outlined
+                        required
+                        aria-required="true"
+                        aria-describedby="interestsError"
+                      ></v-select>
+                      <span id="interestsError" role="alert" aria-live="assertive" style="color: red;"></span>
+                    </v-col>
+                  </v-row>
+                </div>
+                <!-- Sign Up Button -->
+                <v-row justify="center">
+                  <v-col cols="12" sm="8" md="6">
+                    <v-btn type="submit" class="submit-btn mt-5 custom-btn">Sign Up</v-btn>
+                  </v-col>
+                </v-row>
+              </v-form>
+            </v-card>
+          </v-container>
+        </v-main>
+      </v-app>
+    </div>
+  </div>
+
+  <!-- Login Form -->
+  <div id="loginForm" aria-labelledby="loginFormLabel" style="display: none;">
+    <div id="app-login">
+      <v-app>
+        <v-main>
+          <v-container>
+            <v-card class="elevation-12 mt-5">
+              <v-card-title class="text-center">
+                <!-- Login Form Label -->
+                <h1 id="loginFormLabel" class="form-title display-1">Login</h1>
+              </v-card-title>
+              <!-- Login Form Content -->
+              <v-form ref="myForm" @submit.prevent="handleSubmit">
+                <!-- Email -->
+                <v-row justify="center">
+                  <v-col cols="12" sm="8" md="6">
+                    <v-text-field 
+                      v-model="email" 
+                      :rules="emailRules" 
+                      label="Email"
+                      placeholder="Enter your email"
+                      outlined
+                      required
+                      aria-required="true"
+                      aria-describedby="emailError"
+                    >
+                    </v-text-field>
+                    <span id="emailError" role="alert" aria-live="assertive" style="color: red;"></span>
+                  </v-col>
+                </v-row>
+                <!-- Password -->
+                <v-row justify="center">
+                  <v-col cols="12" sm="8" md="6">
+                    <v-text-field 
+                      v-model="password" 
+                      :rules="passwordRules" 
+                      label="Password"
+                      type="password"
+                      placeholder="Enter your password"
+                      outlined
+                      required
+                      aria-required="true"
+                      aria-describedby="passwordError"
+                    >
+                    </v-text-field>
+                    <span id="passwordError" role="alert" aria-live="assertive" style="color: red;"></span>
+                  </v-col>
+                </v-row>
+                <!-- Login Button -->
+                <v-row justify="center">
+                  <v-col cols="12" sm="8" md="6">
+                    <v-btn type="submit" class="submit-btn mt-5 custom-btn">Login</v-btn>
+                  </v-col>
+                </v-row>
+              </v-form>
+            </v-card>
+          </v-container>
+        </v-main>
+      </v-app>
+    </div>
+  </div>
+
+  <br><br>
+  
+  <!-- Footer Section -->
+  <div id="footerContainer"></div>
+
+  <!-- Vue and Vuetify JS -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+
+  <!-- jQuery, Popper.js, and Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- Include the separated JavaScript files -->
+  <script src="js/signup.js"></script>
+  <script src="js/login.js"></script>
+  <script src="js/switch.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/footer.js"></script>
+</body>
+</html>
